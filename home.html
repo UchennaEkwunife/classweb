@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="stocks.html">Stocks</a></li>
+        <li><a href="dogs.html">Dogs</a></li>
+      </ul>
+    </nav>
+
+    <!-- Home Page Content -->
+    <div id="home-content">
+      <h1>Welcome to Class Activities!</h1>
+      <button class="button-20" onclick="navigateTo('stocks')">Stocks</button>
+      <button class="button-20" onclick="navigateTo('dogs')">Dogs</button>
+    </div>
+    <div id="quote-container" class="quote-box">
+      <h1 id="quote">Quote of the Page</h1>
+    </div>
+    <!-- Common Styling Box -->
+    <div id="commonStylingBox">
+      <div class="audio-instructions-box">
+        <h2>Audio Instructions</h2>
+        <ul>
+          <li>Say "Hello" - An alert will say "Hello World" back to you.</li>
+          <li>
+            Say "Change color to &lt;color&gt;" - Change the background color.
+          </li>
+          <li>Say "Navigate to &lt;page&gt;" - Go to another page.</li>
+        </ul>
+        <button class="audio-button" id="turnOnAudio">Turn On Audio</button>
+        <button class="audio-button" id="turnOffAudio">Turn Off Audio</button>
+      </div>
+    </div>
+
+    <audio id="audioElementID" controls></audio>
+
+    <!-- Script Sources -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    ]
+    <script src="main.js"></script>
+
+    <script>
+      if (window.annyang) {
+        // audio commands
+        const commands = {
+          hello: sayHello,
+          "change color to *color": changeColor,
+          "navigate to *page": navigateTo,
+          "toggle audio": toggleAudio,
+        };
+
+        window.annyang.addCommands(commands);
+
+        // Start listening
+        window.annyang.start();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        displayRandomQuote();
+      });
+    </script>
+  </body>
+</html>

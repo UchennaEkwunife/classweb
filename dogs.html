@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogs Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #dogCarousel {
+            display: flex;
+            overflow: hidden;
+        }
+
+        img {
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="stocks.html">Stocks</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+        </ul>
+    </nav>
+
+    <!-- JS Audio Library Controls -->
+    <div id="audio-controls">
+        <button id="turnOnAudio">Turn On Audio</button>
+        <button id="turnOffAudio">Turn Off Audio</button>
+    </div>
+
+    <!-- Dog Carousel Container -->
+    <div id="dogCarousel" class="simple-slider"></div>
+
+    <div id="buttonsContainer"></div>
+
+    <!-- Dog Information Container -->
+    <div id="dogInfoContainer" style="display: none;">
+        <h2 id="breedName"></h2>
+        <p id="breedDescription"></p>
+        <p>Min Life: <span id="minLife"></span></p>
+        <p>Max Life: <span id="maxLife"></span></p>
+    </div>
+    
+    <!-- Common Styling Box -->
+    <div id="commonStylingBox">
+        <div class="audio-instructions-box">
+            <h2>Audio Instructions</h2>
+            <ul>
+                <li>Say "Hello" - An alert will say "Hello World" back to you.</li>
+                <li>Say "Change color to &lt;color&gt;" - Change the background color.</li>
+                <li>Say "Navigate to &lt;page&gt;" - Go to another page.</li>
+                <li>Say "Load &lt;dog breed name&gt" - Load that Dog Breed.</li>
+            </ul>
+            <button class="audio-button" id="turnOnAudio">Turn On Audio</button>
+            <button class="audio-button" id="turnOffAudio">Turn Off Audio</button>
+        </div>
+    </div>
+
+    <!-- Script Sources -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+              if (window.annyang) {
+        // audio commands
+        const commands = {
+          hello: sayHello,
+          "change color to *color": changeColor,
+          "navigate to *page": navigateTo,
+          "toggle audio": toggleAudio,
+        };
+
+        window.annyang.addCommands(commands);
+
+        // Start listening
+        window.annyang.start();
+      }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadDogBreedInfo('breed'); 
+            simpleSlider.init();
+        });
+    </script>
+</body>
+</html>

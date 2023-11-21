@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stocks Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="stocks.html">Stocks</a></li>
+        <li><a href="dogs.html">Dogs</a></li>
+      </ul>
+    </nav>
+
+    <!-- Stocks Page Content -->
+    <div id="stocks-content">
+      <h2>Let's Chart Some Stocks.</h2>
+      <div>
+        <div>
+          <label for="stockTicker">Stock Ticker:</label>
+          <input type="text" id="stockTicker" />
+          <button class="button-29" id="lookupButton">Lookup</button>
+        </div>
+
+        <div>
+          <label for="dateRange">Select Date Range:</label>
+          <select id="dateRange">
+            <option value="30">30 Days</option>
+            <option value="60">60 Days</option>
+            <option value="90">90 Days</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Container for the stock chart -->
+      <div id="stockChartContainer">
+        <canvas id="stockChart"></canvas>
+      </div>
+
+      <table id="stocksListContainer"></table>
+
+      <div id="stockImagesContainer"></div>
+    </div>
+    <div id="commonStylingBox">
+      <div class="audio-instructions-box">
+        <h2>Audio Instructions</h2>
+        <ul>
+          <li>Say "Hello" - An alert will say "Hello World" back to you.</li>
+          <li>
+            Say "Change color to &lt;color&gt;" - Change the background color.
+          </li>
+          <li>Say "Navigate to &lt;page&gt;" - Go to another page.</li>
+          <li>Say "Lookup &lt;stock&gt;" - Load up a Stock.</li>
+        </ul>
+        <button class="audio-button" id="turnOnAudio">Turn On Audio</button>
+        <button class="audio-button" id="turnOffAudio">Turn Off Audio</button>
+      </div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+
+    <script>
+      if (window.annyang) {
+        const commands = {
+          hello: sayHello,
+          "change color to *color": changeColor,
+          "navigate to *page": navigateTo,
+          "toggle audio": toggleAudio,
+        };
+
+        window.annyang.addCommands(commands);
+
+        // Start listening
+        window.annyang.start();
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="main.js"></script>
+    <script>
+            if (window.annyang) {
+        // audio commands
+        const commands = {
+          hello: sayHello,
+          "change color to *color": changeColor,
+          "navigate to *page": navigateTo,
+          "toggle audio": toggleAudio,
+        };
+
+        window.annyang.addCommands(commands);
+
+        // Start listening
+        window.annyang.start();
+      }
+      document
+        .getElementById("lookupButton")
+        .addEventListener("click", function () {
+          const stockTicker = document.getElementById("stockTicker").value;
+          const dateRange = document.getElementById("dateRange").value;
+          lookupStock(stockTicker, dateRange);
+        });
+    </script>
+  </body>
+</html>
